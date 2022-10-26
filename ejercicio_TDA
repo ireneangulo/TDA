@@ -1,1 +1,43 @@
-print("hola")
+matriz = []
+
+
+
+def crear_matriz(numero):
+    for i in range (numero):
+        matriz.append([])
+        for j in range (numero):
+            matriz[i].append(0)
+    return matriz
+
+def rellenar(numero):
+    matriz = crear_matriz(numero)
+    for x in range (numero):
+        for y in range (numero):
+            matriz[x][y] = float(input('Valor de [' + str(x) + '][' + str(y) + '] = '))
+
+def gauss(numero):
+    for z in range (numero-1):
+        for x in range(1, numero-z):
+            if (matriz[z][z] != 0 ):
+                p = matriz[x+z][z] / matriz[z][z]
+                for y in range (numero):
+                     matriz[x+z][y] = matriz[x+z][y] - (matriz[z][y]*p)
+
+def calcular_determinante(numero):
+    determinante=1
+    for x in range (numero):
+        determinante=matriz[x][x]*determinante
+    print ('\nEl determinante de la matriz es = ', determinante)
+
+def resultado(numero):
+    print("\nMatriz resultante:")
+    for i in range (numero):
+            print (matriz[i][:])
+
+
+numero = int(input ('Cual es el tamaño de la matriz : '))
+rellenar(numero)
+gauss(numero)
+calcular_determinante(numero)
+resultado(numero)
+input()
