@@ -1,15 +1,23 @@
+class Nodo(object):
+    info, sig = None, None
+
+
+class datoPolinomio(object):
+
+    def init(self, valor, termino):
+        self.valor = valor
+        self.termino = termino
+
 
 class Polinomio(object):
 
-    def _init_(self):
-
+    def __init__(self):
         '''
         Vamos a guardar en el objeto un diccionario con los elementos con clave el grado, por ejemplo:
         {3: 1, 2: 3} sería x3 + 3x2. Por ejemplo {3:2, 0:1} sería 2x3 + 1 (ya que x^0 es la unidad)
         :return:
         '''
-        
-        self.grado_mayor = None
+        self.grado_mayor = 0
         self.contenido  = {}
 
     def agregar_termino(self, grado, valor):
@@ -52,6 +60,8 @@ class Polinomio(object):
         :return:
         '''
         del self.contenido[grado]
+        if grado == self.grado_mayor:
+            self.grado_mayor =  max(self.contenido.keys())
 
 
     def existe_grado(self, grado):
@@ -61,3 +71,13 @@ class Polinomio(object):
         :return:
         '''
         return self.contenido[grado] is not None
+
+if __name__ == '__main__':
+    poli = Polinomio()
+    poli.agregar_termino(2, 3)  # esto mete un 3x2
+    poli.agregar_termino(0, -1)  # esto mete un -1
+    # ahora poli es 3x2 - 1
+    print(poli.contenido)
+    # debería ser {2:3, 0:1}
+    print(poli.grado_mayor)
+    # debería ser 2
