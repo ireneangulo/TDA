@@ -1,11 +1,14 @@
+
 class Polinomio(object):
 
     def _init_(self):
+
         '''
         Vamos a guardar en el objeto un diccionario con los elementos con clave el grado, por ejemplo:
         {3: 1, 2: 3} sería x3 + 3x2. Por ejemplo {3:2, 0:1} sería 2x3 + 1 (ya que x^0 es la unidad)
         :return:
         '''
+        
         self.grado_mayor = None
         self.contenido  = {}
 
